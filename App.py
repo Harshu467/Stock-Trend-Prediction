@@ -17,7 +17,7 @@ user_input = st.text_input('Enter Stock Ticker','AAPl')
 
 df = data.DataReader(user_input , 'yahoo', start , end)
 
-st.subheader("Data from 01-01-2010 to 2021")
+st.subheader("Data from 01-01-2010 to 31-12-2021")
 st.write(df.describe())
 
 st.subheader('Closing Price vs Time Chart')
