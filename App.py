@@ -14,7 +14,7 @@ end = '2021-12-31'
 
 st.title('Stock Trend Prediction')
 user_input = st.text_input('Enter Stock Ticker','AAPl')
-
+# user_date = st.date_input("Enter Date ")
 df = data.DataReader(user_input , 'yahoo', start , end)
 
 st.subheader("Data from 01-01-2010 to 31-12-2021")
