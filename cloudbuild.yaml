@@ -1,0 +1,23 @@
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 
+           'asia-south2-docker.pkg.dev/stock-366615/my-docker-repo/myimage', 
+           '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 
+           'asia-south2-docker.pkg.dev/stock-366615/my-docker-repo/myimage']
+
+  # Entrypoint, timeout and environment variables
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    timeout: 240s
+    args: ['compute', 'instances', 
+           'create-with-container', 'my-vm-name',
+           '--container-image', 
+           'asia-south2-docker.pkg.dev/stock-366615/my-docker-repo/myimage']
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=asia-south2'
+      - 'CLOUDSDK_COMPUTE_ZONE=asia-south2-a'
